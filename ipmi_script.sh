@@ -2,8 +2,10 @@
 ipmitool -H $IPMIHOST -U $IPMIUSER -P $IPMIPASS -I $IPMIVARIABLE1 $IPMIVARIABLE2 > ipmi_raw
 
 # iterate through sensors
-for sens_addr in "${SENSOR_ADDR_LIST[@]}"
-do
+#for sens_addr in "${SENSOR_ADDR_LIST[@]}"
+#do
+set -- $SENSOR_ADDR_LIST
+while [ -n $sens_addr ]; do
 	line=$(grep $sens_addr ipmi_raw)
 	name=$( echo $line | cut -d'|' -f1 )
 	status=$( echo $line | cut -d'|' -f 5 | awk '{print $1}' )
