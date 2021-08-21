@@ -19,5 +19,6 @@ while [ -n $sens_addr ]; do
 
 	# push data to mosquitto
 	mosquitto_pub -h $MOSQUITTOHOST -u $MOSQUITTOUSER -P $MOSQUITTOPASS -t $MOSQUITTOTOPIC/$sens_addr -f ipmi_data
+	shift
 done
 
