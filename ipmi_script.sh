@@ -4,7 +4,7 @@ ipmitool -H $IPMIHOST -U $IPMIUSER -P $IPMIPASS -I $IPMIVARIABLE1 $IPMIVARIABLE2
 # iterate through sensors
 for sens_addr in "${SENSOR_ADDR_LIST[@]}"
 do
-	line=$(grep $sens ipmi_raw)
+	line=$(grep $sens_addr ipmi_raw)
 	name=$( echo $line | cut -d'|' -f1 )
 	status=$( echo $line | cut -d'|' -f 5 | awk '{print $1}' )
 
